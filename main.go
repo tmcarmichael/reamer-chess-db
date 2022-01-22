@@ -2,10 +2,12 @@ package main
 
 import (
 	"fmt"
-	"./db"
+
+	db "reamer-chess-db/db"
 )
 
 func main() {
 	fmt.Println("Connecting to AWS MongoDB")
-	client := db.dbConnection()
+	client := db.FormConnection()
+
 }

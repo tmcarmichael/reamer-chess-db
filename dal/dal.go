@@ -1,27 +1,40 @@
 package dal
 
 import (
-	"../model"
+	"time"
+
+	model "reamer-chess-db/model"
 )
 
 // Define CRUD operations for DB
-func CreateGame(string gameID, string playerOneID, string playerTwoID) (model.Game, error) {
-	// Starting FEN: rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
-	newGame := model.Game{}
-	if err != nil {
-		return nil, err
-	}
-	return newGame
+func CreateGame(gameID string, playerOneID string, playerTwoID string) (model.Game, error) {
+	// Init starting position, move 0
+	startingPositionFEN := model.Move{MoveNumber: 0, FEN: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1", CreatedAt: time.Now().Unix()}
+
+	// Create new game with starting position FEN
+	newGame := model.Game{GameID: gameID, Moves: []model.Move{startingPositionFEN}, CurrentMove: 1, PlayerOneID: playerOneID, PlayerTwoID: playerTwoID, CreatedAt: time.Now().Unix()}
+
+	// DB Create
 }
 
-func FetchByID(string gameID) (model.Game, error) {
-	// TODO
+func FetchByID(gameID string) (model.Game, error) {
+
+	// DB Retrieve
 }
 
-func UpdateGame(string gameID) error {
-	// TODO
+func UpdateGame(gameID string) error {
+
+	// DB Update
 }
 
-func Delete(string gameID) error {
-	// TODO
+func Delete(gameID string) error {
+
+	// DB Delete
+}
+
+type DAO interface {
+	CreateGame(gameID string, playerOneID string, playerTwoID string) (model.Game, error)
+	FetchByID(gameID string) (model.Game, error)
+	UpdateGame(gameID string) error
+	Delete(gameID string) error
 }
