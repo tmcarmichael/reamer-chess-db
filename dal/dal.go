@@ -98,11 +98,3 @@ func (m MongoClient) DeleteGame(gameID string) error {
 
 	return nil
 }
-
-// Data Access Object for CRUD
-type DAO interface {
-	CreateGame(gameID string, playerOneID string, playerTwoID string) error
-	FetchGameByID(gameID string) (model.Game, error)
-	UpdateGame(gameID string) error
-	Delete(gameID string) error
-}
